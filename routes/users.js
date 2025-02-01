@@ -14,11 +14,10 @@ router.post("/login", async (req, res) => {
   const { username, password } = req.body;
   try {
     const user = await User.findOne({ username: username });
-    console.log(user);
     if (user) {
       res.status(200).send("user finded");
     } else {
-      res.status(500).send("user not found");
+      res.status(500).render("user/login", { message: "user not found" });
     }
   } catch (err) {
     res.status(500).send("Error", err);

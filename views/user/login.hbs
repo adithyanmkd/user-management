@@ -15,7 +15,7 @@
   <!-- heading block and hero image ended -->
   <!-- login form started -->
 
-  <form class="w-96" action="" method="post">
+  <form class="w-96" id="login-form" action="" method="post">
     <h2 class="font-bold text-[44px]">Welcome</h2>
     <p class="text-[#1C1C1C] text-sm pb-16">We are glad to see you back with us</p>
     <ul class="space-y-6">
@@ -37,6 +37,17 @@
           placeholder="password"
         />
       </li>
+      <li
+        id="error-box"
+        class="hidden h-10 items-center justify-center bg-red-100"
+      >
+        <p id="error-box-p" class="text-red-600"></p></li>
+
+      {{#if message}}
+        <li id="loginMessage" class="flex h-10 items-center justify-center bg-red-100">
+          <p class="text-red-600">{{message}}</p>
+        </li>
+      {{/if}}
       <li class="pt-4">
         <button
           class="py-4 bg-black w-full text-white rounded-xl"
