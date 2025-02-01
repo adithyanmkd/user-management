@@ -1,0 +1,72 @@
+<div class="md:flex md:flex-row-reverse justify-evenly h-full items-center">
+  <!-- heading block and hero image -->
+
+  <div class="pb-16 md:pb-0">
+    <img
+      class="relative -top-10 md:top-0 max-h-[700px]"
+      src="/images/kid-image.svg"
+      alt="kid login image"
+    />
+    <h2 class="font-bold text-[44px] md:hidden">Welcome</h2>
+    <p class="text-[#1C1C1C] text-sm md:hidden">We are glad to see you back with
+      us</p>
+  </div>
+
+  <!-- heading block and hero image ended -->
+  <!-- login form started -->
+
+  <form class="w-96" action="/users/register" method="post">
+    <h2 class="font-bold text-[44px]">Welcome</h2>
+    <p class="text-[#1C1C1C] text-sm pb-16">We are glad to see you back with us</p>
+    <ul class="space-y-6">
+      <li class="flex space-x-4 py-3.5 px-4 rounded-xl bg-[#F2F2F2]">
+        <img src="/images/icons/user.svg" alt="user icon" />
+        <input
+          class="h-7 outline-none w-full"
+          type="text"
+          name="username"
+          placeholder="Username"
+        />
+      </li>
+      <li class="flex space-x-4 py-3.5 px-4 rounded-xl bg-[#F2F2F2]">
+        <img src="/images/icons/email.svg" alt="user icon" />
+        <input
+          class="h-7 outline-none w-full"
+          type="email"
+          name="email"
+          placeholder="Enter your email"
+        />
+      </li>
+      <li class="flex space-x-4 py-3.5 px-4 rounded-xl bg-[#F2F2F2]">
+        <img src="/images/icons/lock.svg" alt="user icon" />
+        <input
+          class="h-7 outline-none w-full"
+          name="password"
+          type="password"
+          placeholder="Password"
+        />
+      </li>
+      <li class="flex space-x-4 py-3.5 px-4 rounded-xl bg-[#F2F2F2]">
+        <img src="/images/icons/lock.svg" alt="user icon" />
+        <input
+          class="h-7 outline-none w-full"
+          name="confirmPassword"
+          type="password"
+          placeholder="Confirm Password"
+        />
+      </li>
+      <li class="pt-4">
+        <button
+          class="py-4 bg-black w-full text-white rounded-xl"
+          type="submit"
+        >
+          Sign In
+        </button>
+      </li>
+    </ul>
+    <p class="pt-6 text-center">Don't have an account?
+      <span><a class="text-[#0F3DDE] pl-1" href="/users/login">Sign Up</a></span></p>
+  </form>
+
+  <!-- login form ended -->
+</div>
