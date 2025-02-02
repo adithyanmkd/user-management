@@ -14,8 +14,8 @@ router.get("/", async (req, res) => {
 
 //delete user
 router.post("/delete", async (req, res) => {
-  console.log(req.body);
-  res.send(req.body.email);
+  await User.deleteOne({ email: req.body.email });
+  res.redirect("/admin");
 });
 
 module.exports = router;
