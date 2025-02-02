@@ -1,0 +1,108 @@
+<div class="h-screen w-screen flex bg-[#FFF7F1]">
+  <!-- left section sidebar started -->
+  <div class="w-[20%] h-full bg-[#FC9B4E] pt-6 flex-col">
+    <div class="justify-items-center space-y-4 pb-6">
+      <img src="/images/icons/logo.svg" alt="logo" />
+      <p class="text-white font-semibold">Admin Dashboard</p>
+    </div>
+    <div class="h-px bg-[#EDEDED]"></div>
+    <!-- menu items started -->
+    <ul class="justify-items-center pt-10 space-y-4">
+      <li>
+        <a
+          href=""
+          class="flex w-[192px] pl-4 space-x-4 hover:bg-[#DF6830] rounded-[4px] transform transition-all py-2.5"
+        >
+          <img src="/images/icons/home.svg" alt="home icon" />
+          <p class="font-medium text-white">Dashboard</p>
+        </a>
+      </li>
+      <li>
+        <a
+          href=""
+          class="flex w-[192px] pl-4 space-x-4 hover:bg-[#DF6830] rounded-[4px] transform transition-all py-2.5"
+        >
+          <img src="/images/icons/users.svg" alt="home icon" />
+          <p class="font-medium text-white">Users</p>
+        </a>
+      </li>
+
+    </ul>
+    <!-- menu items ended -->
+  </div>
+  <!-- left section sidebar ended -->
+  <!-- right section started -->
+  <div class="w-[80%]">
+    <div class="flex items-center justify-between px-12 bg-white h-32">
+      <a
+        href="#"
+        class="px-5 py-2.5 rounded-[8px] bg-[#DF6830] hover:bg-[#ff783a] text-white"
+      >Add user</a>
+      <a href="#" class="flex">
+        <img
+          class="pr-3"
+          src="/images/icons/exit_icon.svg"
+          alt="exit icon"
+        />Log out</a>
+    </div>
+    <div class="mt-10 px-12">
+      <div class="bg-white pt-10 rounded-2xl">
+        <div class="flex justify-between px-4 pb-8">
+          <h2 class="text-[22px] font-semibold">All Users</h2>
+          <div class="flex px-4 rounded-[8px] space-x-4 bg-[#F9FBFF] h-[40px]">
+            <img
+              class="w-[24px]"
+              src="/images/icons/search.svg"
+              alt="search icon"
+            />
+            <input
+              class="h-full outline-none"
+              type="search"
+              placeholder="Search"
+            />
+          </div>
+        </div>
+        <!-- table started -->
+        <div class="relative overflow-x-auto">
+          <table class="w-full text-sm text-left text-gray-900">
+            <thead class="text-xs text-gray-500 uppercase bg-gray-100">
+              <tr>
+                <th scope="col" class="px-6 py-3">Users Name</th>
+                <th scope="col" class="px-6 py-3">Email</th>
+                <th scope="col" class="px-6 py-3">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+               
+            {{#each users}}
+              <tr class="bg-white border-b border-gray-400">
+                <td class="px-6 py-4 font-medium text-gray-900">{{this.username}}</td>
+                <td class="px-6 py-4 text-gray-600">{{this.email}}</td>
+                <td class="px-6 py-4 flex gap-4">
+                  <button
+                    class="flex items-center gap-2 hover:cursor-pointer px-3 py-1 text-blue-600 border border-blue-600 rounded-md hover:bg-blue-100"
+                  >
+                    <img src="/images/icons/edit.svg" alt="edit icon" />
+                    Edit
+                  </button>
+                  <form action="/delete" method="post">
+                  <input name="email" class="hidden" type="text" value={{this.email}}>
+                  <button
+                    class="flex items-center gap-2 hover:cursor-pointer px-3 py-1 text-red-600 border border-red-600 rounded-md hover:bg-red-100"
+                  >
+                    <img src="/images/icons/trush.svg" alt="trush icon" />
+                    Delete
+                  </button>
+                  </form>
+                </td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+        <!-- table ended -->
+      </div>
+    </div>
+  </div>
+  <!-- right section ended -->
+</div>
