@@ -16,8 +16,7 @@
   <!-- login form started -->
 
   <form class="w-96" id="register-form" action="/users/register" method="post">
-    <h2 class="font-bold text-[44px]">Welcome</h2>
-    <p class="text-[#1C1C1C] text-sm pb-16">We are glad to see you back with us</p>
+    <h2 class="font-bold text-[44px] pb-16">Get Started Now</h2>
     <ul class="space-y-6">
       <li class="flex space-x-4 py-3.5 px-4 rounded-xl bg-[#F2F2F2]">
         <img src="/images/icons/user.svg" alt="user icon" />
@@ -55,17 +54,22 @@
           placeholder="Confirm Password"
         />
       </li>
+      <li
+        id="error-box"
+        class="hidden h-10 items-center justify-center bg-red-100"
+      >
+        <p id="error-box-p" class="text-red-600"></p></li>
       <li class="pt-4">
         <button
-          class="py-4 bg-black w-full text-white rounded-xl"
+          class="py-4 hover:cursor-pointer hover:bg-[#242424] bg-black w-full text-white rounded-xl"
           type="submit"
         >
-          Sign In
+          Sign Up
         </button>
       </li>
     </ul>
-    <p class="pt-6 text-center">Don't have an account?
-      <span><a class="text-[#0F3DDE] pl-1" href="/users/login">Sign Up</a></span></p>
+    <p class="pt-6 text-center">Have an account?
+      <span><a class="text-[#0F3DDE] pl-1" href="/users/login">Sign In</a></span></p>
   </form>
 
   <!-- login form ended -->

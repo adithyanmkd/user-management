@@ -1535,8 +1535,14 @@
   .bg-\(color\:--my-color\) {
     background-color: var(--my-color);
   }
+  .bg-\[\#1A1A1A\] {
+    background-color: #1A1A1A;
+  }
   .bg-\[\#0088cc\] {
     background-color: #0088cc;
+  }
+  .bg-\[\#313131\] {
+    background-color: #313131;
   }
   .bg-\[\#F2F2F2\] {
     background-color: #F2F2F2;
@@ -2363,6 +2369,34 @@
   }
   .transform-view {
     transform-box: view-box;
+  }
+  .hover\:cursor-pointer {
+    &:hover {
+      @media (hover: hover) {
+        cursor: pointer;
+      }
+    }
+  }
+  .hover\:bg-\[\#242424\] {
+    &:hover {
+      @media (hover: hover) {
+        background-color: #242424;
+      }
+    }
+  }
+  .hover\:bg-\[\#313131\] {
+    &:hover {
+      @media (hover: hover) {
+        background-color: #313131;
+      }
+    }
+  }
+  .hover\:bg-black {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-black);
+      }
+    }
   }
   .md\:top-0 {
     @media (width >= 48rem) {

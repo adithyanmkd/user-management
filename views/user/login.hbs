@@ -20,12 +20,15 @@
     <p class="text-[#1C1C1C] text-sm pb-16">We are glad to see you back with us</p>
     <ul class="space-y-6">
       <li class="flex space-x-4 py-3.5 px-4 rounded-xl bg-[#F2F2F2]">
-        <img src="/images/icons/user.svg" alt="user icon" />
+        <img src="/images/icons/email.svg" alt="user icon" />
         <input
           class="h-7 outline-none w-full"
-          name="username"
-          type="text"
-          placeholder="Username"
+          name="email"
+          type="email"
+          placeholder="Enter your email"
+          {{#if emailId}}
+          value={{emailId}}
+          {{/if}}
         />
       </li>
       <li class="flex space-x-4 py-3.5 px-4 rounded-xl bg-[#F2F2F2]">
@@ -44,16 +47,19 @@
         <p id="error-box-p" class="text-red-600"></p></li>
 
       {{#if message}}
-        <li id="loginMessage" class="flex h-10 items-center justify-center bg-red-100">
+        <li
+          id="loginMessage"
+          class="flex h-10 items-center justify-center bg-red-100"
+        >
           <p class="text-red-600">{{message}}</p>
         </li>
       {{/if}}
       <li class="pt-4">
         <button
-          class="py-4 bg-black w-full text-white rounded-xl"
+          class="py-4 hover:cursor-pointer bg-[#1A1A1A] hover:bg-black w-full text-white rounded-xl"
           type="submit"
         >
-          LOGIN
+          Sign In
         </button>
       </li>
     </ul>

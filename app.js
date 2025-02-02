@@ -10,6 +10,7 @@ var app = express();
 //routes
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
+let adminRouter = require("./routes/admin");
 
 //settings
 app.set("view engine", "hbs");
@@ -27,5 +28,6 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+app.use("/admin", adminRouter);
 
 module.exports = app;

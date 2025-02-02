@@ -1,4 +1,6 @@
-let express = require("express");
+const express = require("express");
+const bcrypt = require("bcrypt");
+
 let router = express.Router();
 
 //user model importing
@@ -11,16 +13,28 @@ router.get("/login", (req, res) => {
 
 //login post method for cheking login form credential
 router.post("/login", async (req, res) => {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
+  console.log(email);
   try {
-    const user = await User.findOne({ username: username });
+    const user = await User.findOne({ email: email });
+
     if (user) {
-      res.status(200).send("user finded");
+      const isMatch = await bcrypt.compare(password, user.password); //check hashed password *this will return true or false
+
+      if (user.email == email && isMatch) {
+        console.log(user);
+        res.render("index", { user: user.username });
+      } else {
+        res.render("user/login", {
+          message: "invalid credential",
+          emailId: user.email,
+        });
+      }
     } else {
-      res.status(500).render("user/login", { message: "user not found" });
+      res.render("user/login", { message: "user not found" });
     }
   } catch (err) {
-    res.status(500).send("Error", err);
+    res.send("Error");
   }
 });
 
@@ -35,11 +49,15 @@ router.post("/register", async (req, res) => {
 
   //form value saving to database
   try {
-    const newUser = new User({ username, email, password }); //passed values to User model
+    //hash the password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    const newUser = new User({ username, email, password: hashedPassword }); //passed values to User model
     await newUser.save(); //value saving
     res.redirect("/users/login");
   } catch (error) {
-    res.status(500).send("Error", error);
+    res.status(500).send({ "Error found": error });
   }
 });
 
