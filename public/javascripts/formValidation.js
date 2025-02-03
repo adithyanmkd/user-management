@@ -1,6 +1,7 @@
 //forms accessing
 const loginForm = document.querySelector("#login-form");
 const registrationForm = document.querySelector("#register-form");
+const adminSideUserAddForm = document.querySelector("#admin-side-user-add");
 
 //error output box and p tag
 const errorBox = document.querySelector("#error-box");
@@ -41,7 +42,7 @@ if (registrationForm) {
   const regUsername = registrationForm.querySelector("[name='username']");
   const regPassword = registrationForm.querySelector("[name='password']");
   const confirmPassword = registrationForm.querySelector(
-    "[name='confirmPassword']"
+    "[name='confirmPassword']",
   );
   const email = registrationForm.querySelector("[name='email']");
 
@@ -64,5 +65,21 @@ if (registrationForm) {
     } else if (confirmPassValue != passwordValue) {
       messageOutputFunction(e, "password not matched");
     }
+  });
+}
+
+if (adminSideUserAddForm) {
+  const popUpScreen = document.querySelector("#pop-up-screen");
+  const closePopUp = document.querySelector("#closeBtn");
+  const addUserBtn = document.querySelector("#add-user-btn");
+
+  //popup screen opening while clicking add user btn
+  addUserBtn.addEventListener("click", () => {
+    popUpScreen.style.display = "block";
+  });
+
+  //popup closing
+  closePopUp.addEventListener("click", () => {
+    popUpScreen.style.display = "none";
   });
 }
