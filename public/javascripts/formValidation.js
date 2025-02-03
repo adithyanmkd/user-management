@@ -2,6 +2,7 @@
 const loginForm = document.querySelector("#login-form");
 const registrationForm = document.querySelector("#register-form");
 const adminSideUserAddForm = document.querySelector("#admin-side-user-add");
+const adminSideUserEditForm = document.querySelector("#admin-side-edit-user");
 
 //error output box and p tag
 const errorBox = document.querySelector("#error-box");
@@ -81,5 +82,22 @@ if (adminSideUserAddForm) {
   //popup closing
   closePopUp.addEventListener("click", () => {
     popUpScreen.style.display = "none";
+  });
+}
+
+if (adminSideUserEditForm) {
+  const editUserBtn = document.querySelector("#edit-btn");
+  const editPopUp = document.querySelector("#edit-pop-up-screen");
+  const closeBtn = document.querySelector("#editCloseBtn");
+
+  //pop up screen opening while clicking edit user btn
+  // editUserBtn.addEventListener("click", (e) => {
+  //   e.preventDefault();
+  //   editPopUp.style.display = "block";
+  // });
+
+  //popup closing
+  closeBtn.addEventListener("click", () => {
+    editPopUp.style.display = "none";
   });
 }

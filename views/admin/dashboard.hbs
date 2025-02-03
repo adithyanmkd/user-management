@@ -84,9 +84,16 @@
                   <td class="px-6 py-4 text-gray-600">{{this.email}}</td>
                   <td class="flex gap-4 px-6 py-4">
                     {{! edit btn form }}
-                    <form action="">
+                    <form action="/admin/edit-user">
+                      <input
+                        class="hidden"
+                        type="text"
+                        value={{this._id}}
+                        name="id"
+                      />
                       <button
                         class="flex items-center gap-2 rounded-md border border-blue-600 px-3 py-1 text-blue-600 hover:cursor-pointer hover:bg-blue-100"
+                        type="submit"
                       >
                         <img src="/images/icons/edit.svg" alt="edit icon" />
                         Edit
@@ -122,7 +129,7 @@
     <!-- listing all users ended -->
   </div>
   <!-- right section ended -->
-  {{! pop up screen }}
+  {{! add user pop up screen started }}
   <div class="absolute hidden" id="pop-up-screen">
     <div class="h-screen w-screen bg-[#2D1400] opacity-60"></div>
     <div
@@ -178,5 +185,72 @@
       <!-- user add form closed -->
     </div>
   </div>
-  {{! pop up screen }}
+  {{! add user pop up screen }}
+  {{! edit user pop up screen started }}
+  {{#if editUser}}
+    <div class="absolute" id="edit-pop-up-screen">
+      <div class="h-screen w-screen bg-[#2D1400] opacity-60"></div>
+      <div
+        class="absolute top-[50%] left-[50%] flex w-[600px] translate-x-[-50%] translate-y-[-50%] justify-center rounded-2xl bg-white py-8"
+      >
+        <!-- close btn started -->
+        <!-- <form action="/admin">
+          <button
+            id="editCloseBtn"
+            class="absolute top-5 right-5 cursor-pointer"
+          ><img src="/images/icons/close.svg" alt="close icon" /></button>
+        </form> -->
+        <a href="/admin" class="absolute top-5 right-5 cursor-pointer"><img
+            src="/images/icons/close.svg"
+            alt="close icon"
+          /></a>
+        <!-- close btn closed -->
+        <!-- edit add form started -->
+        <form action="/admin/edit-user" id="admin-side-edit-user" method="post">
+          <ul class="space-y-6">
+            <li class="space-y-2">
+              <label class="block" for="username">Username</label>
+              <input
+                class="h-10 w-[300px] rounded-[10px] border border-[#C4C4C4] pl-3 outline-none placeholder:text-[14px] placeholder:font-light focus:border-black"
+                for="username"
+                name="username"
+                placeholder="Enter user name"
+                type="text"
+                value="{{editUser.username}}"
+              />
+            </li>
+            <li class="space-y-2">
+              <label class="block" for="email">Email</label>
+              <input
+                class="h-10 w-[300px] rounded-[10px] border border-[#C4C4C4] pl-3 outline-none placeholder:text-[14px] placeholder:font-light focus:border-black"
+                for="email"
+                name="email"
+                placeholder="sample@gmail.com"
+                type="email"
+                value={{editUser.email}}
+              />
+            </li>
+            <li class="space-y-2">
+              <label class="block" for="password">Password</label>
+              <input
+                class="h-10 w-[300px] rounded-[10px] border border-[#C4C4C4] pl-3 outline-none placeholder:text-[14px] placeholder:font-light focus:border-black"
+                for="password"
+                name="password"
+                placeholder="**********"
+                type="password"
+              />
+            </li>
+            <li class="pt-6">
+              <button
+                class="w-full cursor-pointer rounded-[12px] bg-[#DF6830] py-2.5 font-semibold text-white hover:bg-[#F08451]"
+                type="submit"
+              >Edit</button>
+            </li>
+          </ul>
+        </form>
+        <!-- user edit form closed -->
+      </div>
+    </div>
+  {{/if}}
+  {{! edit user pop up screen }}
 </div>
