@@ -1,59 +1,67 @@
-<div class="md:flex md:flex-row-reverse justify-evenly h-full items-center">
+<div class="h-full items-center justify-evenly md:flex md:flex-row-reverse">
   <!-- heading block and hero image -->
 
   <div class="pb-16 md:pb-0">
     <img
-      class="relative -top-10 md:top-0 max-h-[700px]"
+      class="relative -top-10 max-h-[700px] md:top-0"
       src="/images/kid-image.svg"
       alt="kid login image"
     />
-    <h2 class="font-bold text-[44px] md:hidden">Welcome</h2>
-    <p class="text-[#1C1C1C] text-sm md:hidden">We are glad to see you back with
+    <h2 class="text-[44px] font-bold md:hidden">Welcome</h2>
+    <p class="text-sm text-[#1C1C1C] md:hidden">We are glad to see you back with
       us</p>
   </div>
 
   <!-- heading block and hero image ended -->
-  <!-- login form started -->
+  <!-- register form started -->
 
   <form class="w-96" id="register-form" action="/users/register" method="post">
-    <h2 class="font-bold text-[44px] pb-16">Get Started Now</h2>
+    <h2 class="pb-16 text-[44px] font-bold">Get Started Now</h2>
     <ul class="space-y-6">
-      <li class="flex space-x-4 py-3.5 px-4 rounded-xl bg-[#F2F2F2]">
+      <li class="flex space-x-4 rounded-xl bg-[#F2F2F2] px-4 py-3.5">
         <img src="/images/icons/user.svg" alt="user icon" />
         <input
-          class="h-7 outline-none w-full"
+          class="h-7 w-full outline-none"
           type="text"
           name="username"
           placeholder="Username"
         />
       </li>
-      <li class="flex space-x-4 py-3.5 px-4 rounded-xl bg-[#F2F2F2]">
+      <li class="flex space-x-4 rounded-xl bg-[#F2F2F2] px-4 py-3.5">
         <img src="/images/icons/email.svg" alt="user icon" />
         <input
-          class="h-7 outline-none w-full"
+          class="h-7 w-full outline-none"
           type="email"
           name="email"
           placeholder="Enter your email"
         />
       </li>
-      <li class="flex space-x-4 py-3.5 px-4 rounded-xl bg-[#F2F2F2]">
+      <li class="flex space-x-4 rounded-xl bg-[#F2F2F2] px-4 py-3.5">
         <img src="/images/icons/lock.svg" alt="user icon" />
         <input
-          class="h-7 outline-none w-full"
+          class="h-7 w-full outline-none"
           name="password"
           type="password"
           placeholder="Password"
         />
       </li>
-      <li class="flex space-x-4 py-3.5 px-4 rounded-xl bg-[#F2F2F2]">
+      <li class="flex space-x-4 rounded-xl bg-[#F2F2F2] px-4 py-3.5">
         <img src="/images/icons/lock.svg" alt="user icon" />
         <input
-          class="h-7 outline-none w-full"
+          class="h-7 w-full outline-none"
           name="confirmPassword"
           type="password"
           placeholder="Confirm Password"
         />
       </li>
+      {{#if error}}
+        <li
+          id="loginMessage"
+          class="flex h-10 items-center justify-center bg-red-100"
+        >
+          <p class="text-red-600">{{error}}</p>
+        </li>
+      {{/if}}
       <li
         id="error-box"
         class="hidden h-10 items-center justify-center bg-red-100"
@@ -61,7 +69,7 @@
         <p id="error-box-p" class="text-red-600"></p></li>
       <li class="pt-4">
         <button
-          class="py-4 hover:cursor-pointer hover:bg-[#242424] bg-black w-full text-white rounded-xl"
+          class="w-full rounded-xl bg-black py-4 text-white hover:cursor-pointer hover:bg-[#242424]"
           type="submit"
         >
           Sign Up
@@ -69,8 +77,8 @@
       </li>
     </ul>
     <p class="pt-6 text-center">Have an account?
-      <span><a class="text-[#0F3DDE] pl-1" href="/users/login">Sign In</a></span></p>
+      <span><a class="pl-1 text-[#0F3DDE]" href="/users/login">Sign In</a></span></p>
   </form>
 
-  <!-- login form ended -->
+  <!-- register form ended -->
 </div>

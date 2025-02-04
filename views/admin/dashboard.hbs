@@ -51,17 +51,27 @@
       <div class="rounded-2xl bg-white pt-10">
         <div class="flex justify-between px-4 pb-8">
           <h2 class="text-[22px] font-semibold">All Users</h2>
-          <div class="flex h-[40px] space-x-4 rounded-[8px] bg-[#F9FBFF] px-4">
-            <img
-              class="w-[24px]"
-              src="/images/icons/search.svg"
-              alt="search icon"
-            />
-            <input
-              class="h-full outline-none"
-              type="search"
-              placeholder="Search"
-            />
+          <div class="flex gap-4">
+            <div class="flex h-[40px] gap-4 rounded-[8px] bg-[#F9FBFF] px-4">
+              <img
+                class="w-[24px]"
+                src="/images/icons/search.svg"
+                alt="search icon"
+              />
+              <form action="/admin/search" method="post">
+                <input
+                  class="h-full outline-none"
+                  type="search"
+                  name="search"
+                  placeholder="Search"
+                />
+              </form>
+            </div>
+            <!-- <input
+              class="cursor-pointer rounded-[8px] bg-blue-800 px-4 py-2 text-white"
+              type="submit"
+              value="Search"
+            /> -->
           </div>
         </div>
         <!-- table started -->

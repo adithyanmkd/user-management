@@ -1,10 +1,29 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 
+//admin credentials
+const adminName = "admin";
+const adminPass = 1234;
+
 //model importing
 const User = require("../models/User.js");
 
 const router = express.Router();
+
+//admin login
+router.get("/login", (req, res) => {
+  res.render("admin/login");
+});
+
+//admin login post
+router.post("/login", (req, res) => {
+  const { username, password } = req.body;
+  if (username == adminName && password == adminPass) {
+    res.redirect("/admin");
+  } else {
+    res.render("admin/login", { errMsg: "invalid credential" });
+  }
+});
 
 //list all users
 router.get("/", async (req, res) => {
@@ -70,7 +89,15 @@ router.post("/edit-user", async (req, res) => {
   } catch (err) {
     res.status(500).send({ Error: err });
   }
-  console.log(req.body);
+});
+
+//search user
+router.post("/search", async (req, res) => {
+  const q = req.body.search; // query accessing
+  const result = await User.find({
+    username: { $regex: `^${q}`, $options: "i" },
+  });
+  res.render("admin/dashboard", { users: result });
 });
 
 module.exports = router;

@@ -3,9 +3,36 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 let hbs = require("hbs");
+const session = require("express-session");
+const MongoStore = require("connect-mongo");
 
 //main app created
 var app = express();
+
+// Configure session middleware
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET, // secret key stored in .env
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }), // Store session in MongoDB
+    cookie: { maxAge: 1000 * 60 * 60 * 24 },
+  }),
+);
+
+// Set global session variables
+app.use((req, res, next) => {
+  res.locals.user = req.session.user || null; // Store user session globally
+  res.locals.admin = req.session.admin || null; // Store admin session globally
+  next();
+});
+
+// app.use("/*", (req, res, next) => {
+//   res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+//   res.setHeader("Pragma", "no-cache");
+//   res.setHeader("Expires", "0");
+//   next();
+// });
 
 //routes
 var indexRouter = require("./routes/index");

@@ -3,6 +3,7 @@ const loginForm = document.querySelector("#login-form");
 const registrationForm = document.querySelector("#register-form");
 const adminSideUserAddForm = document.querySelector("#admin-side-user-add");
 const adminSideUserEditForm = document.querySelector("#admin-side-edit-user");
+const adminLoginForm = document.querySelector("#admin-login-form");
 
 //error output box and p tag
 const errorBox = document.querySelector("#error-box");
@@ -99,5 +100,17 @@ if (adminSideUserEditForm) {
   //popup closing
   closeBtn.addEventListener("click", () => {
     editPopUp.style.display = "none";
+  });
+}
+
+if (adminLoginForm) {
+  const username = adminLoginForm.querySelector("[name='username']");
+  const password = adminLoginForm.querySelector("[name='password']");
+  console.log(username);
+
+  adminLoginForm.addEventListener("submit", (e) => {
+    if (username.value == "" || password.value == "") {
+      messageOutputFunction(e, "All fields required");
+    }
   });
 }
