@@ -6,17 +6,25 @@ let router = express.Router();
 //user model importing
 let User = require("../models/User");
 
+//middlewares
+const { isAuthenticated, preventAuthAccess } = require("../middleware/auth");
+
 let userValue = null;
 let messageValue = null;
 
 //login page
-router.get("/login", (req, res) => {
+router.get("/login", preventAuthAccess, (req, res) => {
   if (!req.session.user) {
     console.log("users/login here................");
     return res.render("user/login", { user: userValue, message: messageValue });
   }
   // res.redirect("/");
   res.render("index", { user: userValue });
+});
+
+//register get method
+router.get("/register", preventAuthAccess, (req, res) => {
+  res.render("user/register");
 });
 
 //login post method for cheking login form credential
@@ -31,7 +39,6 @@ router.post("/login", async (req, res) => {
 
       if (user.email == email && isMatch) {
         req.session.user = user; // Store user session
-        userValue = user.username;
         res.redirect("/");
         // res.render("index", { user: userValue });
       } else {
@@ -49,11 +56,6 @@ router.post("/login", async (req, res) => {
   } catch (err) {
     res.send("Error");
   }
-});
-
-//register get method
-router.get("/register", (req, res) => {
-  res.render("user/register");
 });
 
 //register form method for handling form submission
@@ -83,11 +85,8 @@ router.post("/register", async (req, res) => {
 //logout
 router.get("/logout", (req, res) => {
   console.log(".................logout function called........");
-  req.session.destroy(() => {
-    console.log("............destroy working..............");
-    // res.render("user/login");
-    res.redirect("/users/login");
-  });
+  req.session.user = null;
+  res.redirect("/users/login");
 });
 
 module.exports = router;

@@ -1,9 +1,13 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
+const {
+  isAdminAuthenticated,
+  preventAdminAuthAccess,
+} = require("../middleware/auth");
 
 //admin credentials
-const adminName = "admin";
-const adminPass = 1234;
+const adminName = process.env.ADMIN_NAME;
+const adminPass = process.env.ADMIN_PASS;
 
 //model importing
 const User = require("../models/User.js");
@@ -11,14 +15,15 @@ const User = require("../models/User.js");
 const router = express.Router();
 
 //admin login
-router.get("/login", (req, res) => {
+router.get("/login", preventAdminAuthAccess, (req, res) => {
   res.render("admin/login");
 });
 
 //admin login post
-router.post("/login", (req, res) => {
+router.post("/login", preventAdminAuthAccess, (req, res) => {
   const { username, password } = req.body;
   if (username == adminName && password == adminPass) {
+    req.session.admin = adminName;
     res.redirect("/admin");
   } else {
     res.render("admin/login", { errMsg: "invalid credential" });
@@ -26,7 +31,7 @@ router.post("/login", (req, res) => {
 });
 
 //list all users
-router.get("/", async (req, res) => {
+router.get("/", isAdminAuthenticated, async (req, res) => {
   const allUsers = await User.find();
   res.render("admin/dashboard", { users: allUsers });
 });
@@ -98,6 +103,12 @@ router.post("/search", async (req, res) => {
     username: { $regex: `^${q}`, $options: "i" },
   });
   res.render("admin/dashboard", { users: result });
+});
+
+//admin logout
+router.get("/logout", (req, res) => {
+  req.session.admin = null;
+  res.redirect("/admin/login");
 });
 
 module.exports = router;

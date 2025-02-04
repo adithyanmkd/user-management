@@ -1,13 +1,9 @@
 var express = require("express");
 var router = express.Router();
+const { isAuthenticated } = require("../middleware/auth");
 
 /* GET home page. */
-router.get("/", function (req, res) {
-  if (!req.session.user) {
-    console.log("redirecting to users/login ........");
-    return res.redirect("users/login");
-  }
-
+router.get("/", isAuthenticated, (req, res) => {
   res.render("index", { user: req.session.user.username });
 });
 

@@ -114,3 +114,19 @@ if (adminLoginForm) {
     }
   });
 }
+
+// Prevent going back to the login page using browser's back button
+if (window.history && window.history.pushState) {
+  window.history.pushState(null, null, window.location.href);
+  window.onpopstate = function () {
+    if (!document.cookie.includes("sessionId")) {
+      window.history.pushState(null, null, window.location.href);
+    }
+  };
+}
+
+window.addEventListener("pageshow", function (event) {
+  if (event.persisted) {
+    window.location.reload();
+  }
+});
