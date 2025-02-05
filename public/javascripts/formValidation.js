@@ -76,7 +76,7 @@ if (adminSideUserAddForm) {
   const addUserBtn = document.querySelector("#add-user-btn");
 
   //popup screen opening while clicking add user btn
-  addUserBtn.addEventListener("click", () => {
+  addUserBtn.addEventListener("click", (e) => {
     popUpScreen.style.display = "block";
   });
 

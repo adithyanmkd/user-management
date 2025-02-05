@@ -49,13 +49,19 @@ router.post("/add-user", async (req, res) => {
   try {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
+    const user = await User.findOne({ email: email });
+    console.log(user);
 
-    await User.create({
-      username: username,
-      email: email,
-      password: hashedPassword,
-    });
-    res.redirect("/admin");
+    if (!user) {
+      await User.create({
+        username: username,
+        email: email,
+        password: hashedPassword,
+      });
+      res.redirect("/admin");
+    } else {
+      res.send("user already exist");
+    }
   } catch (err) {
     if (err) {
       res.status(500).send({ Error: err });
@@ -84,13 +90,18 @@ router.post("/edit-user", async (req, res) => {
   try {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
+    const user = await User.findOne({ email: email });
 
-    const updateUser = await User.findByIdAndUpdate(
-      { _id: userId },
-      { username: username, email: email, password: hashedPassword },
-      { new: true },
-    );
-    res.redirect("/admin");
+    if (!user) {
+      const updateUser = await User.findByIdAndUpdate(
+        { _id: userId },
+        { username: username, email: email, password: hashedPassword },
+        { new: true },
+      );
+      res.redirect("/admin");
+    } else {
+      res.send("user already existes");
+    }
   } catch (err) {
     res.status(500).send({ Error: err });
   }
