@@ -92,7 +92,7 @@ router.post("/edit-user", async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt);
     const user = await User.findOne({ email: email });
 
-    if (!user) {
+    if (!user || user._id == userId) {
       const updateUser = await User.findByIdAndUpdate(
         { _id: userId },
         { username: username, email: email, password: hashedPassword },
